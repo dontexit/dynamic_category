@@ -80,23 +80,9 @@
 
 #Index
 
-   <ul class="category_list" style="position: absolute; top:0; display: none; flex-direction: column; height: 100vh; background-color: azure; gap: 0.5rem;  width: 300px;">
-        <div class="category-menu" style="display: flex; gap: 9rem;">
-            <p id="category_title">All Categories</p>
-            <img id="x" onclick=hidecat() src="{% static 'account/icons/x.svg' %}" alt=""></li>
-        </div>
-        {% for category in categories %}
-    
-    <li>
-        <a id="{{ category.0 }}" href="#">{{category.1}}</a>
-        <div class="{{ category.0  }}"></div>
-    </li>
-{% endfor %}
-</ul>
-</div>
-<script>
 
-    cl = document.querySelector('.category_list')
+    
+  cl = document.querySelector('.category_list')
     cl.addEventListener("click",cat_changed)
     
     function get_sublist(subcategory_list,value){
@@ -116,8 +102,13 @@
             scat = document.querySelector('.'+evt.target.id)
             console.log(scat)
             if(scat.childNodes.length > 0){
-                console.log(scat.childNodes.length)
-                document.querySelector('.'+evt.target.id).style.display='none'
+                if(scat.style.display != "none"){
+                console.log(scat.childNodes.length,scat.style.display )
+                scat.style.display='none'
+                }
+                else{
+                scat.style.display = "flex"
+                }
     //            while (scat.childNodes.length > 0) {
     //     scat.removeChild(scat.lastChild);
     //     subcat.classList.add('sub')
